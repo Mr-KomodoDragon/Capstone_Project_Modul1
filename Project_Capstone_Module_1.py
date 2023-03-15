@@ -161,12 +161,15 @@ def addpatient():
             continue
         elif any(i.isspace()for i in inputNewpatientCode):
             print("Must Mix Alpha and Number")
+            print()
             continue
         elif inputNewpatientCode.isalpha():
             print("Must Mix Alpha and Number")
+            print()
             continue
         elif inputNewpatientCode.isnumeric():
             print("Must Mix Alpha and Number")
+            print()
             continue
         elif len(filtered) == 0:                                                            
              break
@@ -451,7 +454,7 @@ def deletelist():
     if len(filtered) == 0:                                                     
         print("*Patient Data Is Not Existed*")
         print()
-        deletelist()
+        deleteListmenu()
     else:
         for i, item in enumerate(listpatient):
             if inputDeletePatientCode == item["patient_code"]:
@@ -477,9 +480,9 @@ def menu():
     print('''
     List Menu:
     1. List of Patient
-    2. Add list
-    3. Update list
-    4. Delete list
+    2. Create New Patient
+    3. Modify Patient's Data
+    4. Delete Patient's Data
     5. Exit Program''')
 
     print('')

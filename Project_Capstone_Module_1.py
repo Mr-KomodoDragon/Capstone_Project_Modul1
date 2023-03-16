@@ -480,7 +480,7 @@ def menu():
     print('''
     List Menu:
     1. List of Patient
-    2. Create New Patient
+    2. Create New Patient's Data
     3. Modify Patient's Data
     4. Delete Patient's Data
     5. Exit Program''')

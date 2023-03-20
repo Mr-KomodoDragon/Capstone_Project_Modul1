@@ -68,17 +68,15 @@ def SearchPatientName():
         show_patient(filtered[0]["patient_code"])
         
     listPatientMenu()
-    
-# Funciton show all based filter
+
 def show_all_Patient_filter():
     print('''
     Search Based Filter
     1.Nationality
     2.Gender
-    3.Age
-    4.Diagnostic Type
+    3.Diagnostic Type
 
-    For Cancel This Action Enter '5'
+    For Cancel This Action Enter '4'
     ''')
     while True:
         UserFilter = input("Based On What You Want to Search: ")
@@ -109,21 +107,8 @@ def show_all_Patient_filter():
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
                 
+
         elif UserFilter == "3":
-            UserFilter_Age = int(input("Enter What Age Would You Like To Find: "))
-            filtered = list(filter(lambda i: i["age"] == UserFilter_Age, listpatient))
-
-            if len(filtered) == 0:
-                print("Data not found")
-                print() 
-                listPatientMenu()
-            print("="*90)
-            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
-            for i in filtered:
-                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
-
-
-        elif UserFilter == "4":
             UserFilter_Diagnostic = input("Enter What Diagnostic Type Would You Like To Find: ").capitalize()
             filtered = list(filter(lambda i: i["diagnostic"] == UserFilter_Diagnostic, listpatient))
 
@@ -135,11 +120,11 @@ def show_all_Patient_filter():
             print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
-        elif UserFilter == "5":
+        elif UserFilter == "4":
             print()
             listPatientMenu()
         else:
-            print("Button Only Available from 1 to 5")
+            print("Button Only Available from 1 to 4")
             show_all_Patient_filter()
             print()
 

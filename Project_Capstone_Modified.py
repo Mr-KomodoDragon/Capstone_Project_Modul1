@@ -163,7 +163,7 @@ def listPatientMenu():
     print('''
     1. Show All Patient's Table
     2. Show All Patient's Data Filter
-    3. Search Patient's Name
+    3. Search Patient Using Patient's Code
     4. Back to Menus
     ''')
     print('')
@@ -333,7 +333,7 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isnumeric()for i in inputNewpatientAge):
+        elif all(i.isnumeric()for i in inputNewpatientAge):
             break
         else:
             print("Input Must Numeric!")
@@ -482,7 +482,7 @@ def updatePatient():
                                 if inputNewPatientAge == "":
                                     print("Can't Input Blank Space!")
                                     continue
-                                elif any(i.isnumeric()for i in inputNewPatientAge):
+                                elif all(i.isnumeric()for i in inputNewPatientAge):
                                     pass
                                 else:
                                     print("Input Must Numeric!")

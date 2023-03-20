@@ -68,7 +68,8 @@ def SearchPatientName():
         show_patient(filtered[0]["patient_code"])
         
     listPatientMenu()
-
+    
+# Funciton show all based filter
 def show_all_Patient_filter():
     print('''
     Search Based Filter

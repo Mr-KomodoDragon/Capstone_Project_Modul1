@@ -490,7 +490,7 @@ def updatePatient():
                                     continue
                                 inputConfirm = input('Are You Sure Want To Save? Y/N: ').capitalize()
                                 if inputConfirm == 'Yes' or inputConfirm == 'Y':
-                                    filtered[0]["age"] = inputNewPatientAge
+                                    filtered[0]["age"] = int(inputNewPatientAge)
                                     print("*Updating Data Is Success!*")
                                     print()
                                     updateListmenu()

@@ -69,6 +69,7 @@ def SearchPatientName():
         
     listPatientMenu()
 
+# Function show all patient based filter    
 def show_all_Patient_filter():
     print('''
     Search Based Filter

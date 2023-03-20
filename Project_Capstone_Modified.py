@@ -437,7 +437,7 @@ def updatePatient():
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue
-                                elif any(i.isalpha() or i.isspace() for i in inputNewPatientName):
+                                elif all(i.isalpha() or i.isspace() for i in inputNewPatientName):
                                     pass
                                 else:
                                     print("Input Must Aplhabets!")
@@ -467,7 +467,7 @@ def updatePatient():
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue
-                                elif any(i.isalpha() or i.isspace() for i in inputNewPatientNatioanlity):
+                                elif all(i.isalpha() or i.isspace() for i in inputNewPatientNatioanlity):
                                     pass
                                 else:
                                     print("Input Must Aplhabets!")
@@ -524,7 +524,7 @@ def updatePatient():
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue
-                                elif any(i.isalpha() or i.isspace() for i in inputNewPatientDiagnostic):
+                                elif all(i.isalpha() or i.isspace() for i in inputNewPatientDiagnostic):
                                     pass
                                 else:
                                     print("Input Must Aplhabets!")

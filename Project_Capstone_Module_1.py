@@ -52,8 +52,8 @@ def SearchPatientName():
     inputPatient = input('Input Patient Code: ').capitalize()
     print()
 
-    filtered = list(filter(lambda i: i["patient_code"] == inputPatient, listpatient)) # untuk filter hasi list dalam listpatient,
-    if len(filtered) == 0:                                                            # agar hasil True saja yang di proses/di extract
+    filtered = list(filter(lambda i: i["patient_code"] == inputPatient, listpatient)) # untuk filter hasi list dalam listpatient,agar hasil True saja yang di proses/di extract
+    if len(filtered) == 0:   #jika tablenya kosong maka diartikan data pasien tidak ditemukan                                                           
         print("*Patient Data Is Not Existed")
         print()
     else:
@@ -66,8 +66,8 @@ def SearchPatientName():
 def listPatientMenu():
     print(f"{'='*10} List of Patient Menus {'='*10}")
     print('''
-    1. Show All Patient Table
-    2. Search Patient's Name
+    1. Show All Patient's Table
+    2. Search Patient's Name Based Patient's Code
     3. Back to Menus
     ''')
     print('')
@@ -480,7 +480,7 @@ def menu():
     print('''
     List Menu:
     1. List of Patient
-    2. Create New Patient's Data
+    2. Create New Patient
     3. Modify Patient's Data
     4. Delete Patient's Data
     5. Exit Program''')

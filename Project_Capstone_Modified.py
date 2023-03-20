@@ -281,12 +281,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isspace() for i in inputNewpatientName):
-            print('Input Must Aplhabets!')
+        elif any(i.isnumeric() for i in inputNewpatientName):
+            print("Can't Input Numeric!")
             print()
             continue
         elif any(i.isalpha() or i.isspace() for i in inputNewpatientName):
             break
+        elif any(i.isspace() for i in inputNewpatientName):
+            print('Input Must Aplhabets!')
+            print()
+            continue
         else:
             print("Input Must Aplhabets!")
             print()
@@ -298,12 +302,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isspace() for i in inputNewpatientNationality):
-            print('Input Must Aplhabets!')
+        elif any(i.isnumeric() for i in inputNewpatientNationality):
+            print("Can't Input Numeric!")
             print()
             continue
         elif any(i.isalpha() or i.isspace() for i in inputNewpatientNationality):
             break
+        elif any(i.isspace() for i in inputNewpatientNationality):
+            print('Input Must Aplhabets!')
+            print()
+            continue
         else:
             print("Input Must Aplhabets!")
             print()
@@ -314,12 +322,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isspace() for i in inputNewpatientGender):
-            print('Input Must Aplhabets!')
+        elif any(i.isnumeric() for i in inputNewpatientGender):
+            print("Can't Input Numeric!")
             print()
             continue
         elif any(i.isalpha() or i.isspace() for i in inputNewpatientGender):
             break
+        elif any(i.isspace() for i in inputNewpatientGender):
+            print('Input Must Aplhabets!')
+            print()
+            continue
         else:
             print("Input Must Aplhabets!")
             print()
@@ -343,12 +355,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isspace() for i in inputNewpatientDiagnostic):
-            print('Input Must Aplhabets!')
+        elif any(i.isnumeric() for i in inputNewpatientDiagnostic):
+            print("Can't Input Numeric!")
             print()
             continue
         elif any(i.isalpha() or i.isspace() for i in inputNewpatientDiagnostic):
             break
+        elif any(i.isspace() for i in inputNewpatientDiagnostic):
+            print('Input Must Aplhabets!')
+            print()
+            continue
         else:
             print("Input Must Aplhabets!")
             print()
@@ -417,7 +433,7 @@ def updatePatient():
                                     print("Can't Input Blank Space!")
                                     print()
                                     continue
-                                elif any(i.isspace() for i in inputNewPatientName):
+                                elif all(i.isspace() for i in inputNewPatientName):
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue
@@ -447,7 +463,7 @@ def updatePatient():
                                 inputNewPatientNatioanlity = input('Enter New Nationality: ').title()
                                 if inputNewPatientNatioanlity == "":
                                     continue
-                                elif any(i.isspace() for i in inputNewPatientNatioanlity):
+                                elif all(i.isspace() for i in inputNewPatientNatioanlity):
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue
@@ -504,7 +520,7 @@ def updatePatient():
                                 inputNewPatientDiagnostic = input('Enter New Diagnostic: ').capitalize()
                                 if inputNewPatientDiagnostic == "":
                                     continue
-                                elif any(i.isspace() for i in inputNewPatientDiagnostic):
+                                elif all(i.isspace() for i in inputNewPatientDiagnostic):
                                     print('Input Must Aplhabets!')
                                     print()
                                     continue

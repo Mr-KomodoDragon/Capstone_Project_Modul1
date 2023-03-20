@@ -86,7 +86,10 @@ def show_all_Patient_filter():
 
             if len(filtered) == 0:
                 print("Data not found")
+                print()
                 listPatientMenu()
+
+            print("="*90)
             print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
@@ -97,10 +100,13 @@ def show_all_Patient_filter():
 
             if len(filtered) == 0:
                 print("Data not found")
+                print()
                 listPatientMenu()
+            print("="*90)
             print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+                
 
         if UserFilter == "3":
             UserFilter_Diagnostic = input("Enter What Diagnostic Type Would You Like To Find: ").capitalize()
@@ -108,11 +114,14 @@ def show_all_Patient_filter():
 
             if len(filtered) == 0:
                 print("Data not found")
+                print()
                 listPatientMenu()
+            print("="*90)
             print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
-    
+
+        print()        
         listPatientMenu()
                     
 def listPatientMenu():

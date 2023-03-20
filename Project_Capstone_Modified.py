@@ -61,7 +61,7 @@ def SearchPatientName():
     print()
 
     filtered = list(filter(lambda i: i["patient_code"] == inputPatient, listpatient)) # untuk filter hasi list dalam listpatient,agar hasil True saja yang di proses/di extract
-    if len(filtered) == 0:   #jika tablenya kosong maka diartikan data pasien tidak ditemukan                                                           
+    if len(filtered) == 0:                                                            #jika tablenya kosong maka diartikan data pasien tidak ditemukan                                                           
         print("*Patient Data Is Not Existed")
         print()
     else:
@@ -69,17 +69,17 @@ def SearchPatientName():
         
     listPatientMenu()
 
-# Function show all patient based filter    
 def show_all_Patient_filter():
-    print('''
+    while True:
+        print('''
     Search Based Filter
     1.Nationality
     2.Gender
     3.Diagnostic Type
+    4.Age
 
-    For Cancel This Action Enter '4'
+    For Cancel This Action Enter '5'
     ''')
-    while True:
         UserFilter = input("Based On What You Want to Search: ")
         if UserFilter == "1":
             UserFilter_Nationality = input("Enter What Nationality Would You Like To Find: ").capitalize()
@@ -121,7 +121,31 @@ def show_all_Patient_filter():
             print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
                 print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+        
         elif UserFilter == "4":
+            UserFilter_Age = input("Enter What Age Type Would You Like To Find: ")
+            if UserFilter_Age == "":
+                print("Data Not Found")
+                print() 
+                listPatientMenu()
+            elif any(i.isnumeric()for i in UserFilter_Age):
+                pass
+            else:
+                print("Data Not Found")
+                print() 
+                listPatientMenu()
+            filtered = list(filter(lambda i: i["age"] == int(UserFilter_Age), listpatient))
+
+            if len(filtered) == 0:
+                print("Data not found")
+                print() 
+                listPatientMenu()
+            print("="*90)
+            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+            for i in filtered:
+                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+        
+        elif UserFilter == "5":
             print()
             listPatientMenu()
         else:

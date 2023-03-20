@@ -281,16 +281,12 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isnumeric() for i in inputNewpatientName):
-            print("Can't Input Numeric!")
-            print()
-            continue
-        elif any(i.isalpha() or i.isspace() for i in inputNewpatientName):
-            break
-        elif any(i.isspace() for i in inputNewpatientName):
+        elif all(i.isspace() for i in inputNewpatientName):
             print('Input Must Aplhabets!')
             print()
             continue
+        elif all(i.isalpha() or i.isspace() for i in inputNewpatientName):
+            break
         else:
             print("Input Must Aplhabets!")
             print()
@@ -302,19 +298,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isnumeric() for i in inputNewpatientNationality):
-            print("Can't Input Numeric!")
-            print()
-            continue
-        elif any(i.isalpha() or i.isspace() for i in inputNewpatientNationality):
-            break
-        elif any(i.isspace() for i in inputNewpatientNationality):
+        elif all(i.isspace() for i in inputNewpatientNationality):
             print('Input Must Aplhabets!')
             print()
             continue
+        elif all(i.isalpha() or i.isspace() for i in inputNewpatientNationality):
+            break
         else:
             print("Input Must Aplhabets!")
             print()
+            continue
 
     while True:
         inputNewpatientGender = input("Enter Patient's Gender: ").capitalize()
@@ -322,19 +315,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isnumeric() for i in inputNewpatientGender):
-            print("Can't Input Numeric!")
-            print()
-            continue
-        elif any(i.isalpha() or i.isspace() for i in inputNewpatientGender):
-            break
-        elif any(i.isspace() for i in inputNewpatientGender):
+        elif all(i.isspace() for i in inputNewpatientGender):
             print('Input Must Aplhabets!')
             print()
             continue
+        elif all(i.isalpha() or i.isspace() for i in inputNewpatientGender):
+            break
         else:
             print("Input Must Aplhabets!")
             print()
+            continue
             
     while True:
         inputNewpatientAge = input("Enter Patient's Age: ")
@@ -355,19 +345,16 @@ def addpatient():
             print("Can't Input Blank Space!")
             print()
             continue
-        elif any(i.isnumeric() for i in inputNewpatientDiagnostic):
-            print("Can't Input Numeric!")
-            print()
-            continue
-        elif any(i.isalpha() or i.isspace() for i in inputNewpatientDiagnostic):
-            break
-        elif any(i.isspace() for i in inputNewpatientDiagnostic):
+        elif all(i.isspace() for i in inputNewpatientDiagnostic):
             print('Input Must Aplhabets!')
             print()
             continue
+        elif all(i.isalpha() or i.isspace() for i in inputNewpatientDiagnostic):
+            break
         else:
             print("Input Must Aplhabets!")
             print()
+            continue
     
     # Looping For Confirmation Save New Data
     while True:

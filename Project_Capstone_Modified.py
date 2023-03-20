@@ -152,7 +152,8 @@ def show_all_Patient_filter():
             print("Button Only Available from 1 to 4")
             show_all_Patient_filter()
             print()
-
+            
+        print("="*90)
         print()
         listPatientMenu()
 

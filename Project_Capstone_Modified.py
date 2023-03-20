@@ -82,7 +82,7 @@ def show_all_Patient_filter():
     ''')
         UserFilter = input("Based On What You Want to Search: ")
         if UserFilter == "1":
-            UserFilter_Nationality = input("Enter What Nationality Would You Like To Find: ").capitalize()
+            UserFilter_Nationality = input("Enter What Nationality Would You Like To Find: ").title()
             filtered = list(filter(lambda i: i["nationality"] == UserFilter_Nationality, listpatient))
 
             if len(filtered) == 0:
@@ -110,7 +110,7 @@ def show_all_Patient_filter():
                 
 
         elif UserFilter == "3":
-            UserFilter_Diagnostic = input("Enter What Diagnostic Type Would You Like To Find: ").capitalize()
+            UserFilter_Diagnostic = input("Enter What Diagnostic Type Would You Like To Find: ").title()
             filtered = list(filter(lambda i: i["diagnostic"] == UserFilter_Diagnostic, listpatient))
 
             if len(filtered) == 0:
@@ -128,7 +128,7 @@ def show_all_Patient_filter():
                 print("Data Not Found")
                 print() 
                 listPatientMenu()
-            elif any(i.isnumeric()for i in UserFilter_Age):
+            elif all(i.isnumeric()for i in UserFilter_Age):
                 pass
             else:
                 print("Data Not Found")
@@ -340,7 +340,7 @@ def addpatient():
             continue
 
     while True:
-        inputNewpatientDiagnostic = input("Enter Patient's Diagnostic Type: ").capitalize()
+        inputNewpatientDiagnostic = input("Enter Patient's Diagnostic Type: ").title()
         if inputNewpatientDiagnostic == "":
             print("Can't Input Blank Space!")
             print()
@@ -373,7 +373,7 @@ def addpatient():
             }
             listpatient.append(listPatientnew)
             print("New Patient's Record Has Been Saved!")
-            print(listpatient)
+            print()
             addListMenu()
         elif inputNewpatientConfirm.capitalize() == 'No' or inputNewpatientConfirm.capitalize() == 'N':
             print('Adding New Patient Action is Cancel')

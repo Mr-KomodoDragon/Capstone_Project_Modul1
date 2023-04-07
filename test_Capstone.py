@@ -1,10 +1,14 @@
+from datetime import datetime
+
+
+
 listpatient = [
     {
        'patient_code': 'A1',
        'name': 'Millicent Leonardo',
        'nationality': 'United States',
        'gender': 'Female',
-       'age': 20,
+       'birthday': '2003-03-06',
        'diagnostic': 'Ultrasound'
       
     },
@@ -13,7 +17,7 @@ listpatient = [
         'name': 'Raj Alam',
         'nationality': 'Indonesia',
         'gender': 'Male',
-        'age': 19,
+        'birthday': "2004-08-24",
         'diagnostic': 'Hearing Test'
     },
     {
@@ -21,7 +25,7 @@ listpatient = [
         'name': 'Audrey Simmonds L',
         'nationality': 'Australia',
         'gender': 'Female',
-        'age': 5,
+        'birthday': '2004-08-02',
         'diagnostic': 'Hearing Test'
     },
      {
@@ -29,7 +33,7 @@ listpatient = [
         'name': 'Joel Simmonds',
         'nationality': 'Australia',
         'gender': 'Male',
-        'age': 19,
+        'birthday': '2004-07-22',
         'diagnostic': 'X Ray'
     }
  ]
@@ -38,13 +42,13 @@ listpatient = [
 def show_all_list_patient():
     data =sorted(listpatient, key=lambda k: k['patient_code'])
     if len(listpatient) == 0:
-          print('*Table Patient is empty')
+          notification('*Table Patient is empty')
           print()
     else:
         print("="*90)
-        print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+        print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
         for index, item in enumerate(data):
-                print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
         print("="*90)
         print()
     listPatientMenu()
@@ -53,17 +57,17 @@ def show_all_list_patient():
 def show_patient(code):
     # A001
     print("="*90)
-    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birtday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
     for i in listpatient:
         if code == i['patient_code']:
-            print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+            print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['birthday']:<15} {i['gender']:<10} {i['diagnostic']:<10}")
     print("="*90)
     print()
 
 # Function For Search Patient's Name
 def SearchPatientName():
     if len(listpatient) == 0:
-          print('*Table Patient is empty*')
+          notification('*Table Patient is empty*')
           listPatientMenu()
 
     inputPatient = input('Input Patient Code: ').capitalize()
@@ -71,8 +75,8 @@ def SearchPatientName():
 
     filtered = list(filter(lambda i: i["patient_code"] == inputPatient, listpatient)) # untuk filter hasi list dalam listpatient,agar hasil True saja yang di proses/di extract
     if len(filtered) == 0:                                                            #jika tablenya kosong maka diartikan data pasien tidak ditemukan                                                           
-        print("*Patient Data Is Not Existed")
-        print()
+        notification("*Patient Data Is Not Existed")
+    
     else:
         show_patient(filtered[0]["patient_code"])
         
@@ -86,7 +90,7 @@ def show_all_Patient_filter():
     1.Nationality
     2.Gender
     3.Diagnostic Type
-    4.Age
+    4.Birthday
 
     For Cancel This Action Enter '5'
     ''')
@@ -96,27 +100,27 @@ def show_all_Patient_filter():
             filtered = list(filter(lambda i: i["nationality"] == UserFilter_Nationality, listpatient))
 
             if len(filtered) == 0:
-                print("Data not found")
+                notification("Data not found")
                 print()
                 listPatientMenu()
 
             print("="*90)
-            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
-                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['birthday']:<15} {i['gender']:<10} {i['diagnostic']:<10}")
 
         elif UserFilter == "2":
             UserFilter_Gender = input("Enter What Gender Would You Like To Find: ").capitalize()
             filtered = list(filter(lambda i: i["gender"] == UserFilter_Gender, listpatient))
 
             if len(filtered) == 0:
-                print("Data not found")
+                notification("Data not found")
                 print()
                 listPatientMenu()
             print("="*90)
-            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birtday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
-                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['birthday']:<15} {i['gender']:<10} {i['diagnostic']:<10}")
                 
 
         elif UserFilter == "3":
@@ -124,41 +128,36 @@ def show_all_Patient_filter():
             filtered = list(filter(lambda i: i["diagnostic"] == UserFilter_Diagnostic, listpatient))
 
             if len(filtered) == 0:
-                print("Data not found")
-                print() 
+                notification("Data not found")
+                
                 listPatientMenu()
             print("="*90)
-            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birtday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
             for i in filtered:
-                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['birthday']:<15} {i['gender']:<10} {i['diagnostic']:<10}")
         
         elif UserFilter == "4":
-            UserFilter_Age = input("Enter What Age Type Would You Like To Find: ")
+            UserFilter_Age = input("Enter Patient's year Would You Like To Find: ")
             if UserFilter_Age == "":
-                print("Data Not Found")
-                print() 
+                notification("Data Not Found")
+                
                 listPatientMenu()
-            elif all(i.isnumeric()for i in UserFilter_Age):
-                pass
             else:
-                print("Data Not Found")
-                print() 
-                listPatientMenu()
-            filtered = list(filter(lambda i: i["age"] == int(UserFilter_Age), listpatient))
-            if len(filtered) == 0:
-                print("Data not found")
-                print() 
-                listPatientMenu()
-            print("="*90)
-            print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
-            for i in filtered:
-                print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['age']:<10} {i['gender']:<10} {i['diagnostic']:<10}")
+                filtered = [d for d in listpatient if datetime.strptime(d["birthday"], '%Y-%m-%d').year == int(UserFilter_Age)]
+                if len(filtered) == 0:
+                    notification("Data not found")
+                    
+                    listPatientMenu()
+                print("="*90)
+                print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
+                for i in filtered:
+                    print(f"{i['patient_code']:<10} {i['name']:<20} {i['nationality']:<15} {i['birthday']:<15} {i['gender']:<10} {i['diagnostic']:<10}")
         
         elif UserFilter == "5":
             print()
             listPatientMenu()
         else:
-            print("Button Only Available from 1 to 5")
+            notification("Button Only Available from 1 to 5")
             show_all_Patient_filter()
             print()
             
@@ -169,7 +168,7 @@ def show_all_Patient_filter():
 # Function Sort
 def show_all_Patient_sort():
     if len(listpatient) == 0:
-        print('*Table Patient is empty')
+        notification('*Table Patient is empty')
         print()
         listPatientMenu()
     while True:
@@ -178,7 +177,7 @@ def show_all_Patient_sort():
     1.Name
     2.Gender
     3.Diagnostic Type
-    4.Age
+    4.Birthday
     5.Nationality
 
     For Cancel This Action Enter '6'
@@ -191,24 +190,24 @@ def show_all_Patient_sort():
                 if inputsort1 == 'ASC':
                     dataASC_Name =sorted(listpatient, key=lambda k: k['name'])
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataASC_Name):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 elif inputsort1 == 'DESC':
                     dataDESC_Name =sorted(listpatient, key=lambda k: k['name'],reverse=True)
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataDESC_Name):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 else:
-                    print(f'Your Input Is Invalid')
-                    print()
+                    notification(f'Your Input Is Invalid')
+        
 
         elif inputsort == '2':
             while True:
@@ -216,66 +215,66 @@ def show_all_Patient_sort():
                 if inputsort2 == 'ASC':
                     dataASC_Gender =sorted(listpatient, key=lambda k: k['gender'])
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataASC_Gender):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 elif inputsort2 == 'DESC':
                     dataDESC_Gender =sorted(listpatient, key=lambda k: k['gender'],reverse=True)
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataDESC_Gender):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 else:
-                    print(f'Your Input Is Invalid')
-                    print()
+                    notification(f'Your Input Is Invalid')
+                    
         elif inputsort == '3':
             while True:
                 inputsort3 = input(f'Choose Sequence Type(ASC/DESC): ').upper()
                 if inputsort3 == 'ASC':
                     dataASC_Diagnostic =sorted(listpatient, key=lambda k: k['diagnostic'])
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataASC_Diagnostic):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 elif inputsort3 == 'DESC':
                     dataDESC_Diagnostic =sorted(listpatient, key=lambda k: k['diagnostic'],reverse=True)
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataDESC_Diagnostic):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 else:
-                    print(f'Your Input Is Invalid')
-                    print()
+                    notification(f'Your Input Is Invalid')
+                    
         elif inputsort == '4':
             while True:
                 inputsort3 = input(f'Choose Sequence Type(ASC/DESC): ').upper()
                 if inputsort3 == 'ASC':
-                    dataASC_Age =sorted(listpatient, key=lambda k: k['age'])
+                    dataASC_Age =sorted(listpatient, key=lambda k: k['birthday'])
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataASC_Age):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 elif inputsort3 == 'DESC':
-                    dataDESC_Age =sorted(listpatient, key=lambda k: k['age'],reverse=True)
+                    dataDESC_Age =sorted(listpatient, key=lambda k: k['birthday'],reverse=True)
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataDESC_Age):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
@@ -285,18 +284,18 @@ def show_all_Patient_sort():
                 if inputsort5 == 'ASC':
                     dataASC_Nationality =sorted(listpatient, key=lambda k: k['nationality'])
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataASC_Nationality):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
                 elif inputsort5 == 'DESC':
                     dataDESC_Nationality =sorted(listpatient, key=lambda k: k['nationality'],reverse=True)
                     print("="*90)
-                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Age":<10} {"Gender":<10} {"Diagnostic Test":<10}')
+                    print(f'{"Code":<10} {"Name":<20} {"Nationality":<15} {"Birthday":<15} {"Gender":<10} {"Diagnostic Test":<10}')
                     for index, item in enumerate(dataDESC_Nationality):
-                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['age']:<10} {item['gender']:<10} {item['diagnostic']:<10}")
+                            print(f"{item['patient_code']:<10} {item['name']:<20} {item['nationality']:<15} {item['birthday']:<15} {item['gender']:<10} {item['diagnostic']:<10}")
                     print("="*90)
                     print()
                     listPatientMenu()
@@ -307,8 +306,8 @@ def show_all_Patient_sort():
             print()
             listPatientMenu()
         else:
-            print(f'Button Only Available from 1 to 6')
-            print()
+            notification(f'Button Only Available from 1 to 6')
+            
 
             
 
@@ -336,9 +335,7 @@ def listPatientMenu():
     elif SelectPatientMenu == "5":
         menu()
     else:
-        print('Menu buttons only Available from 1 to 5')
-        print('Pleas Input Your Number Again')
-        print()
+        notification('Menu buttons only Available from 1 to 2\nPlease Input Your Number Again')
         listPatientMenu()
 
 
@@ -358,9 +355,7 @@ def addListMenu():
     elif addlistinput == "2":
          menu()
     else:
-        print('Menu buttons only Available from 1 to 2')
-        print('Pleas Input Your Number Again')
-        print()
+        notification('Menu buttons only Available from 1 to 2\nPlease Input Your Number Again')
         addListMenu()
 
 #Sub Menu UPDATE LIST
@@ -379,9 +374,7 @@ def updateListmenu():
     elif addlistinput == "2":
         menu()
     else:
-        print('Menu buttons only Available from 1 to 2')
-        print('Pleas Input Your Number Again')
-        print()
+        notification('Menu buttons only Available from 1 to 2\nPlease Input Your Number Again')
         updateListmenu()
 
 #Sub Menu DELETE LIST
@@ -400,10 +393,12 @@ def deleteListmenu():
     elif addlistinput == "2":
         menu()
     else:
-        print('Menu buttons only Available from 1 to 2')
-        print('Pleas Input Your Number Again')
-        print()
+        notification('Menu buttons only Available from 1 to 2\nPlease Input Your Number Again')
         deleteListmenu()
+
+def notification(messbirthday):
+    print(f"{messbirthday}")
+    return print()
 
 # Add Patient
 def addpatient():
@@ -411,107 +406,124 @@ def addpatient():
         inputNewpatientCode = input('Enter New Code For Patient: ').capitalize()
         filtered = list(filter(lambda i: i["patient_code"] == inputNewpatientCode, listpatient)) # untuk filter hasil list dalam listpatient,agar hasil True saja yang di proses/di extract
         if inputNewpatientCode == "":
-            print("Can't Input Blank Space!")
-            print()
+            notification("Can't Input Blank Space!")
             continue
         elif any(i.isspace()for i in inputNewpatientCode):
-            print("Must Mix Alpha and Number")
-            print()
+            notification("Must Mix Alpha and Number")
             continue
         elif inputNewpatientCode.isalpha():
-            print("Must Mix Alpha and Number")
-            print()
+            not("Must Mix Alpha and Number")
             continue
         elif inputNewpatientCode.isnumeric():
-            print("Must Mix Alpha and Number")
-            print()
+            notification("Must Mix Alpha and Number")
             continue
         elif len(filtered) == 0:                                                            
              break
         else:
-            print('*Sorry, Patient Code Is Already Taken!*')
-            print()
+            notification('*Sorry, Patient Code Is Already Taken!*')
             continue
     
     while True:
         inputNewpatientName = input("Enter Patient's Name: ").title()
         if inputNewpatientName == "":
-            print("Can't Input Blank Space!")
-            print()
+            notification("Can't Input Blank Space!")
             continue
         elif all(i.isspace() for i in inputNewpatientName):
-            print('Input Must Aplhabets!')
-            print()
+            notification('Input Must Aplhabets!')
             continue
         elif all(i.isalpha() or i.isspace() for i in inputNewpatientName):
             break
         else:
-            print("Input Must Aplhabets!")
-            print()
+            notification("Input Must Aplhabets!")
             continue
 
     while True:
         inputNewpatientNationality = input("Enter Patient's Nationality: ").title()
         if inputNewpatientNationality == "":
-            print("Can't Input Blank Space!")
-            print()
+            notification("Can't Input Blank Space!")
             continue
         elif all(i.isspace() for i in inputNewpatientNationality):
-            print('Input Must Aplhabets!')
-            print()
+            notification('Input Must Aplhabets!')
             continue
         elif all(i.isalpha() or i.isspace() for i in inputNewpatientNationality):
             break
         else:
-            print("Input Must Aplhabets!")
-            print()
+            notification("Input Must Aplhabets!")
             continue
 
     while True:
         inputNewpatientGender = input("Enter Patient's Gender: ").capitalize()
         if inputNewpatientGender == "":
-            print("Can't Input Blank Space!")
-            print()
+            notification("Can't Input Blank Space!")
             continue
         elif all(i.isspace() for i in inputNewpatientGender):
-            print('Input Must Aplhabets!')
-            print()
+            notification('Input Must Aplhabets!')
             continue
         elif all(i.isalpha() or i.isspace() for i in inputNewpatientGender):
             break
         else:
-            print("Input Must Aplhabets!")
-            print()
+            notification("Input Must Aplhabets!")
             continue
             
     while True:
-        inputNewpatientAge = input("Enter Patient's Age: ")
-        if inputNewpatientAge == "":
-            print("Can't Input Blank Space!")
-            print()
+        temp = []
+        inputYear = input("Enter Patient's Year: ")
+        if inputYear == "":
+            notification("Cannot input blank space")
             continue
-        elif all(i.isnumeric()for i in inputNewpatientAge):
-            break
+        elif any(i.isspace() for i in inputYear):
+            notification('Input Must Numeric!')
+            continue
+        elif any(i.isalpha() for i in inputYear):
+            notification('Input Must Numeric')
+            continue
         else:
-            print("Input Must Numeric!")
-            print()
+            pass
+        inputMonth = input("Enter Patient's Month: ")
+        if inputYear == "":
+            notification("Cannot input blank space")
             continue
+        elif any(i.isspace() for i in inputMonth):
+            notification('Input Must Numeric!')
+            continue
+        elif any(i.isalpha() for i in inputMonth):
+            notification('Input Must Numeric')
+            continue
+        else:
+            pass
+        inputDay = input("Enter Patient's Date: ")
+        if inputYear == "":
+            notification("Cannot input blank space")
+            continue
+        elif any(i.isspace() for i in inputDay):
+            notification('Input Must Numeric!')
+            continue
+        elif any(i.isalpha() for i in inputDay):
+            notification('Input Must Numeric')
+            continue
+        else:
+            pass
+
+        temp.append(inputYear)
+        temp.append(inputMonth)
+        temp.append(inputDay)
+
+        fullBirthday = "-".join(temp)
+        break
+
 
     while True:
         inputNewpatientDiagnostic = input("Enter Patient's Diagnostic Type: ").title()
         if inputNewpatientDiagnostic == "":
-            print("Can't Input Blank Space!")
-            print()
+            notification("Can't Input Blank Space!")
             continue
         elif all(i.isspace() for i in inputNewpatientDiagnostic):
-            print('Input Must Aplhabets!')
-            print()
+            notification('Input Must Aplhabets!')
             continue
         elif all(i.isalpha() or i.isspace() for i in inputNewpatientDiagnostic):
             break
         else:
-            print("Input Must Aplhabets!")
-            print()
+            notification("Input Must Aplhabets!")
             continue
     
     # Looping For Confirmation Save New Data
@@ -525,21 +537,18 @@ def addpatient():
                 'name'        : inputNewpatientName,
                 'nationality' : inputNewpatientNationality,
                 'gender'      : inputNewpatientGender,
-                'age'         : inputNewpatientAge,
+                'birthday'    : fullBirthday,
                 'diagnostic'  : inputNewpatientDiagnostic
                       
             }
             listpatient.append(listPatientnew)
-            print("New Patient's Record Has Been Saved!")
-            print()
+            notification("New Patient's Record Has Been Saved!")
             addListMenu()
         elif inputNewpatientConfirm.capitalize() == 'No' or inputNewpatientConfirm.capitalize() == 'N':
-            print('Adding New Patient Action is Cancel')
+            notification('Adding New Patient Action is Cancel')
             addListMenu()
-            print()
         else:
-             print('*Your Input is Invalid*')
-             print()
+            notification('*Your Input is Invalid*')
 
 #Update Patient
 def updatePatient():
@@ -547,8 +556,7 @@ def updatePatient():
         inputUpdateCode = input("Enter Patient's Code: ").capitalize()
         filtered = list(filter(lambda i: i["patient_code"] == inputUpdateCode, listpatient))
         if len(filtered) == 0:                                                           
-            print("*Patient Data Is Not Existed")
-            print()
+            notification("*Patient Data Is Not Existed")
             updatePatient()
         else:
             show_patient(filtered[0]["patient_code"])
@@ -559,7 +567,7 @@ def updatePatient():
         List Table Rows:
         1. Name
         2. Nationality
-        3. Age
+        3. Birthday
         4. Diagnostic Type
 
     For Cancel This Action Enter '5'
@@ -568,40 +576,33 @@ def updatePatient():
                         inputSelect = input("Which Column You Want To Change: ")
                         print()
                         if inputSelect == "":
-                            print('Your Input Is Invalid!')
-                            print()
+                            notification('Your Input Is Invalid!')
                             continue
                         if inputSelect == "1":
                             while True:
                                 inputNewPatientName = input("Enter New Name: ").title()
                                 if inputNewPatientName =="":
-                                    print("Can't Input Blank Space!")
-                                    print()
+                                    notification("Can't Input Blank Space!")
                                     continue
                                 elif all(i.isspace() for i in inputNewPatientName):
-                                    print('Input Must Aplhabets!')
-                                    print()
+                                    notification('Input Must Aplhabets!')
                                     continue
                                 elif all(i.isalpha() or i.isspace() for i in inputNewPatientName):
                                     pass
                                 else:
-                                    print("Input Must Aplhabets!")
-                                    print()
+                                    notification("Input Must Aplhabets!")
                                     continue
                                 while True:
                                     inputConfirm = input('Are You Sure Want To Save? Y/N: ').capitalize()
                                     if inputConfirm == 'Yes' or inputConfirm == 'Y':
                                         filtered[0]["name"] = inputNewPatientName
-                                        print("*Updating Data Is Success!*")
-                                        print()
+                                        notification("*Updating Data Is Success!*")
                                         updateListmenu()
                                     elif inputConfirm == 'No' or inputConfirm == 'N':
-                                        print("*Updating Data Is Cancel!*")
-                                        print()
+                                        notification("*Updating Data Is Cancel!*")
                                         updateListmenu()
                                     else:
-                                        print("Your Input Is Invalid!")
-                                        print()
+                                        notification("Your Input Is Invalid!")
                                         continue
 
                         elif inputSelect == "2":
@@ -610,57 +611,84 @@ def updatePatient():
                                 if inputNewPatientNatioanlity == "":
                                     continue
                                 elif all(i.isspace() for i in inputNewPatientNatioanlity):
-                                    print('Input Must Aplhabets!')
-                                    print()
+                                    notification('Input Must Aplhabets!')
                                     continue
                                 elif all(i.isalpha() or i.isspace() for i in inputNewPatientNatioanlity):
                                     pass
                                 else:
-                                    print("Input Must Aplhabets!")
-                                    print()
+                                    notification("Input Must Aplhabets!")
                                     continue
                                 while True:
                                     inputConfirm = input('Are You Sure Want To Save? Y/N: ').capitalize()
                                     if inputConfirm == 'Yes' or inputConfirm == 'Y':
                                         filtered[0]["nationality"] = inputNewPatientNatioanlity
-                                        print("*Updating Data Is Success!*")
-                                        print()
+                                        notification("*Updating Data Is Success!*")
                                         updateListmenu()
                                     elif inputConfirm == 'No' or inputConfirm == 'N':
-                                        print("*Updating Data Is Cancel!*")
-                                        print()
+                                        notification("*Updating Data Is Cancel!*")
                                         updateListmenu()
                                     else:
-                                        print("Your Input Is Invalid!")
-                                        print()
+                                        notification("Your Input Is Invalid!")
                                         continue
 
                         elif inputSelect == "3":
                             while True:
-                                inputNewPatientAge = input('Enter New Age: ').capitalize()
-                                if inputNewPatientAge == "":
-                                    print("Can't Input Blank Space!")
+                                temp = []
+                                inputYear = input("Enter new Patient's Year: ")
+                                if inputYear == "":
+                                    notification("Cannot input blank space")
                                     continue
-                                elif all(i.isnumeric()for i in inputNewPatientAge):
-                                    pass
+                                elif any(i.isspace() for i in inputYear):
+                                    notification('Input Must Numeric!')
+                                    continue
+                                elif any(i.isalpha() for i in inputYear):
+                                    notification('Input Must Numeric')
+                                    continue
                                 else:
-                                    print("Input Must Numeric!")
-                                    print()
-                                    continue
+                                    pass
+                                while True:
+                                    inputMonth = input("Enter new Patient's Month: ")
+                                    if inputMonth == "":
+                                        notification("Cannot input blank space")
+                                        continue
+                                    elif any(i.isspace() for i in inputMonth):
+                                        notification('Input Must Numeric!')
+                                        continue
+                                    elif any(i.isalpha() for i in inputMonth):
+                                        notification('Input Must Numeric')
+                                        continue
+                                    else:
+                                        pass
+                                    break
+                                while True:
+                                    inputDay = input("Enter new Patient's Date: ")
+                                    if inputDay == "":
+                                        notification("Cannot input blank space")
+                                        continue
+                                    elif any(i.isspace() for i in inputDay):
+                                        notification('Input Must Numeric!')
+                                        continue
+                                    elif any(i.isalpha() for i in inputDay):
+                                        notification('Input Must Numeric')
+                                        continue
+                                    else:
+                                        pass
+                                    temp.append(inputYear)
+                                    temp.append(inputMonth)
+                                    temp.append(inputDay)
+                                    fullBirthday = "-".join(temp)
+                                    break
                                 while True:
                                     inputConfirm = input('Are You Sure Want To Save? Y/N: ').capitalize()
                                     if inputConfirm == 'Yes' or inputConfirm == 'Y':
-                                        filtered[0]["age"] = int(inputNewPatientAge)
-                                        print("*Updating Data Is Success!*")
-                                        print()
+                                        filtered[0]["birthday"] = fullBirthday
+                                        notification("*Updating Data Is Success!*")
                                         updateListmenu()
                                     elif inputConfirm == 'No' or inputConfirm == 'N':
-                                        print("*Updating Data Is Cancel!*")
-                                        print()
+                                        notification("*Updating Data Is Cancel!*")
                                         updateListmenu()
                                     else:
-                                        print("Your Input Is Invalid!")
-                                        print()
+                                        notification("Your Input Is Invalid!")
                                         continue
 
                         elif inputSelect == "4":
@@ -669,43 +697,35 @@ def updatePatient():
                                 if inputNewPatientDiagnostic == "":
                                     continue
                                 elif all(i.isspace() for i in inputNewPatientDiagnostic):
-                                    print('Input Must Aplhabets!')
-                                    print()
+                                    notification('Input Must Aplhabets!')
                                     continue
                                 elif all(i.isalpha() or i.isspace() for i in inputNewPatientDiagnostic):
                                     pass
                                 else:
-                                    print("Input Must Aplhabets!")
-                                    print()
+                                    notification("Input Must Aplhabets!")
                                     continue
                                 while True:
                                     inputConfirm = input('Are You Sure Want To Save? Y/N: ').capitalize()
                                     if inputConfirm == 'Yes' or inputConfirm == 'Y':
                                         filtered[0]["diagnostic"] = inputNewPatientDiagnostic
-                                        print("*Updating Data Is Success!*")
-                                        print()
+                                        notification("*Updating Data Is Success!*")
                                         updateListmenu()
                                     elif inputConfirm == 'No' or inputConfirm == 'N':
-                                        print("*Updating Data Is Cancel!*")
-                                        print()
+                                        notification("*Updating Data Is Cancel!*")
                                         updateListmenu()
                                     else:
-                                        print("Your Input Is Invalid!")
-                                        print()
+                                        notification("Your Input Is Invalid!")
                                         continue
                         elif inputSelect == "5":
                             updateListmenu()
                         else:
-                            print("*Option Only Available From 1 to 5*")
-                            print()
+                            notification("*Option Only Available From 1 to 5*")
                             continue
                 elif confirm  == 'No' or confirm == 'N':
-                    print('*Your Action Has Been Cancel*')
-                    print()
+                    notification('*Your Action Has Been Cancel*')
                     updateListmenu()
                 else:
-                    print("Your Input Is Invalid!")
-                    print()
+                    notification("Your Input Is Invalid!")
                     continue
 
 #Delete Patient                
@@ -714,8 +734,7 @@ def deletelist():
     inputDeletePatientCode = input("Enter Which Patient's Code Will Be Remove: ").capitalize()
     filtered = list(filter(lambda i: i["patient_code"] == inputDeletePatientCode, listpatient)) #Ini digunakan untuk cek apakah Code ada di list atau tidak.
     if len(filtered) == 0:                                                     
-        print("*Patient Data Is Not Existed*")
-        print()
+        notification("*Patient Data Is Not Existed*")
         deleteListmenu()
     else:
         for i, item in enumerate(listpatient):
@@ -724,16 +743,13 @@ def deletelist():
                     inputConfirm = input('Are You Sure Want Delete This Data? Y/N: ').capitalize()
                     if inputConfirm == 'Yes' or inputConfirm == 'Y':
                         del listpatient[i]
-                        print("*Deleting Patient'S Data Is Success*")
-                        print()
+                        notification("*Deleting Patient'S Data Is Success*")
                         deleteListmenu()
                     elif inputConfirm == 'No' or inputConfirm == 'N':
-                        print('*Your Action Has Been Cancel*')
-                        print()
+                        notification('*Your Action Has Been Cancel*')
                         deleteListmenu()
                     else:
-                        print("Your Input Is Invalid!")
-                        print()
+                        notification("Your Input Is Invalid!")
                     
 
 def menu():

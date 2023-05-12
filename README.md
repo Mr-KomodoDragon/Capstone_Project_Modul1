@@ -1,5 +1,6 @@
-# Purwadhika_Capstone_Project_Modul_1
-A Small CRUD Project using Python
+# Application CLI using Python
+Osborne Park Patient Manager (CLI)
 
 About Project:
-This Project is about small application where user create,read,update, and delete Patient's Data
+This project is a small application called 'OPH Patient Manager' designed for managing patient records at Osborne Park Hospital.
+The application is intended to be used by nurses for creating, reading, updating, and deleting patient records, both for new and existing patients
